@@ -2,13 +2,13 @@ package com.example.moviesinthesky
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesinthesky.adapters.MovieListAdapter
 import com.example.moviesinthesky.viewModels.MovieViewModel
 import com.example.moviesinthesky.viewModels.MovieViewModelFactory
 import androidx.activity.viewModels
-import com.example.moviesinthesky.data.Movie
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,12 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val adapter = MovieListAdapter()
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter.setOnItemClickListener(object : MovieListAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.v("TEST", "TEST222222222222222222")
+            }
+        })
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
 
         movieViewModel.allMovies.observe(this) {

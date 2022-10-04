@@ -1,8 +1,10 @@
 package com.example.moviesinthesky.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,28 +13,50 @@ import com.example.moviesinthesky.R
 import com.example.moviesinthesky.data.Movie
 
 class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.MovieViewHolder?>(MovieComparator()) {
+    private lateinit var listener : OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder.create(parent)
+        return MovieViewHolder.create(parent, listener)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.title)
+        holder.bind(current.title, current.imageRef)
     }
 
-    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val wordItemView: TextView = itemView.findViewById(R.id.textView)
+    class MovieViewHolder(itemView: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
+        private val movieItemView: TextView = itemView.findViewById(R.id.textView)
+        private val movieImageView: ImageView = itemView.findViewById(R.id.imageView)
 
-        fun bind(text: String?) {
-            wordItemView.text = text
+        @SuppressLint("UseCompatLoadingForDrawables")
+        fun bind(text: String?, imageRef: String?) {
+            movieItemView.text = text
+/*            val src = imageRef?.lowercase()
+            Log.v("SRC", "" + src)
+            val resourceId = itemView.resources.getIdentifier(src, "drawable-ldpi", itemView.context.packageName);
+            Log.v("SRC", "" + resourceId)
+            movieImageView.setImageDrawable(itemView.resources.getDrawable(resourceId));*/
+
+        }
+        init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
         }
 
         companion object {
-            fun create(parent: ViewGroup): MovieViewHolder {
+            fun create(parent: ViewGroup, listener: OnItemClickListener): MovieViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.recyclerview_item, parent, false)
-                return MovieViewHolder(view)
+                return MovieViewHolder(view, listener)
             }
         }
 

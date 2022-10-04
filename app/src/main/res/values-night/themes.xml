@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.MoviesInTheSky" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_200</item>
-        <item name="colorPrimaryVariant">@color/blue_200</item>
+        <item name="colorPrimary">@android:color/holo_blue_light</item>
+        <item name="colorPrimaryVariant">@android:color/holo_blue_light</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -16,7 +16,7 @@
     <style name="word_title">
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:paddingLeft">8dp</item>
-        <item name="android:background">@android:color/holo_orange_light</item>
+        <item name="android:background">@android:color/holo_blue_light</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
 </resources>
