@@ -8,6 +8,7 @@ import com.example.moviesinthesky.adapters.MovieListAdapter
 import com.example.moviesinthesky.viewModels.MovieViewModel
 import com.example.moviesinthesky.viewModels.MovieViewModelFactory
 import androidx.activity.viewModels
+import com.example.moviesinthesky.data.Movie
 
 
 class MainActivity : AppCompatActivity() {

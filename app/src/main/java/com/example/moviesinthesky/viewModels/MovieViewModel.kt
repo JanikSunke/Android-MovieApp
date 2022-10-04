@@ -16,8 +16,8 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun insert(word: Movie) = viewModelScope.launch {
-        repository.insert(word)
+    fun insert(movie: Movie) = viewModelScope.launch {
+        repository.insert(movie)
     }
 }
 

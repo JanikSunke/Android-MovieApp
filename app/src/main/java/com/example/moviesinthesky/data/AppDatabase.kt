@@ -30,30 +30,19 @@ abstract class AppDatabase : RoomDatabase() {
                     var movieDao = database.movieDao()
                     movieDao.deleteAll()
 
+                    movieDao.insert(Movie(1,"Django Unchained",2012,"Quentin Tarantino","djangoUnchained.png"))
+                    movieDao.insert(Movie(2,"Shrek",2001,"Andrew Adamson","shrek.png"))
+                    movieDao.insert(Movie(3,"Pulp Fiction",1994,"Quentin Tarantino","pulpfiction.png"))
+                    movieDao.insert(Movie(4,"Get Out",2017,"Jordan Peele","getout.png"))
+                    movieDao.insert(Movie(5,"Saving Private Ryan",1998,"Steven Spielberg","ryan.png"))
+                    movieDao.insert(Movie(6,"Gladiator",2000,"Ridley Scott","gladiator.png"))
 
-                    // Add sample words.
-                    val jsonFile = getJsonDataFromAsset(MovieApplication.applicationContext(), "movies.JSON")
-                    val gson = Gson()
-                    val listMovieType = object : TypeToken<List<MovieJson>>() {}.type
-                    var movies: List<MovieJson> = gson.fromJson(jsonFile, listMovieType)
-                    movies.forEachIndexed { idx, movie ->
-                        movieDao.insert(Movie(idx,movie.title,movie.releaseYear,movie.director, movie.imageRef))
-                    }
+
+
                 }
             }
         }
-        private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
-            val jsonString: String
-            try {
-                jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
-            } catch (ioException: IOException) {
-                ioException.printStackTrace()
-                return null
-            }
-            return jsonString
-        }
 
-        private data class MovieJson(val title: String, val releaseYear: Int, val director: String, val imageRef: String) { }
     }
 
     companion object {
