@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
-    // Using LiveData and caching what allWords returns has several benefits:
+    // Using LiveData and caching what allMovies returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
@@ -19,6 +19,14 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     fun insert(movie: Movie) = viewModelScope.launch {
         repository.insert(movie)
     }
+
+    /**
+     * Launching a new coroutine to get the data in a non-blocking way
+     */
+    fun get(id: Int) = viewModelScope.launch {
+        repository.get(id)
+    }
+
 }
 
 class MovieViewModelFactory(private val repository: MovieRepository) : ViewModelProvider.Factory {

@@ -1,6 +1,7 @@
 package com.example.moviesinthesky.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,13 +40,12 @@ class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.MovieViewHolder?>(M
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(text: String?, imageRef: String?) {
             movieItemView.text = text
-/*            val src = imageRef?.lowercase()
-            Log.v("SRC", "" + src)
-            val resourceId = itemView.resources.getIdentifier(src, "drawable-ldpi", itemView.context.packageName);
-            Log.v("SRC", "" + resourceId)
-            movieImageView.setImageDrawable(itemView.resources.getDrawable(resourceId));*/
+            val src = imageRef?.lowercase()
+            val resourceId = itemView.resources.getIdentifier(src?.substring(0, src.indexOf(".")), "drawable", itemView.context.packageName);
+            movieImageView.setImageResource(resourceId)
 
         }
+
         init {
             itemView.setOnClickListener {
                 listener.onItemClick(adapterPosition)

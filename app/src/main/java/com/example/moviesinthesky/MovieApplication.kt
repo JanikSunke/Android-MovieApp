@@ -13,11 +13,4 @@ class MovieApplication : Application() {
     // rather than when the application starts
     val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { MovieRepository(database.movieDao()) }
-    companion object {
-        private var instance: MovieApplication? = null
-
-        fun applicationContext() : Context {
-            return instance!!.applicationContext
-        }
-    }
 }

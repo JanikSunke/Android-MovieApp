@@ -1,5 +1,6 @@
 package com.example.moviesinthesky
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import com.example.moviesinthesky.adapters.MovieListAdapter
 import com.example.moviesinthesky.viewModels.MovieViewModel
 import com.example.moviesinthesky.viewModels.MovieViewModelFactory
 import androidx.activity.viewModels
+import com.example.moviesinthesky.data.AppDatabase
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         adapter.setOnItemClickListener(object : MovieListAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                Log.v("TEST", "TEST222222222222222222")
+                val i = Intent(applicationContext, MovieActivity::class.java)
+                i.putExtra("id", position)
+                startActivity(i)
             }
         })
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
