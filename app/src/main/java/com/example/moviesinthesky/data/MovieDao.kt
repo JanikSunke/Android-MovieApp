@@ -1,12 +1,13 @@
 package com.example.moviesinthesky.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
     @Query("SELECT * FROM movie WHERE uid = (:id)")
-    fun get(id: Int): Flow<Movie>
+    suspend fun get(id: Int): Movie
 
     @Query("SELECT * FROM movie")
     fun getAll(): Flow<List<Movie>>

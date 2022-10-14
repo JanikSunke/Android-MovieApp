@@ -4,13 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesinthesky.adapters.MovieListAdapter
 import com.example.moviesinthesky.viewModels.MovieViewModel
 import com.example.moviesinthesky.viewModels.MovieViewModelFactory
 import androidx.activity.viewModels
-import com.example.moviesinthesky.data.AppDatabase
+import androidx.core.view.get
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import kotlin.math.log
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,9 +31,9 @@ class MainActivity : AppCompatActivity() {
         val adapter = MovieListAdapter()
         recyclerView.adapter = adapter
         adapter.setOnItemClickListener(object : MovieListAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(position: Int, view: View) {
                 val i = Intent(applicationContext, MovieActivity::class.java)
-                i.putExtra("id", position)
+                i.putExtra("id", position + 1)
                 startActivity(i)
             }
         })

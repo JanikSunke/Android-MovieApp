@@ -1,6 +1,7 @@
 package com.example.moviesinthesky.data
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 
 
@@ -21,7 +22,7 @@ class MovieRepository(private val movieDao: MovieDao) {
     }
 
     @WorkerThread
-    fun get(id: Int) {
-        movieDao.get(id)
+    suspend fun get(id: Int): Movie {
+        return movieDao.get(id);
     }
 }

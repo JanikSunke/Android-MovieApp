@@ -3,6 +3,7 @@ package com.example.moviesinthesky.viewModels
 import androidx.lifecycle.*
 import com.example.moviesinthesky.data.Movie
 import com.example.moviesinthesky.data.MovieRepository
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
@@ -23,8 +24,8 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     /**
      * Launching a new coroutine to get the data in a non-blocking way
      */
-    fun get(id: Int) = viewModelScope.launch {
-        repository.get(id)
+    suspend fun get(id: Int): Movie {
+        return repository.get(id)
     }
 
 }
