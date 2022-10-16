@@ -18,11 +18,11 @@
 
     <TextView
         android:id="@+id/textViewIntentName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:autoSizeTextType="uniform"
         android:text="TextView"
-        android:textSize="48sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewIntent" />
@@ -48,4 +48,15 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIntentDirector" />
+
+    <TextView
+        android:id="@+id/textViewIntentActors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIntentReleaseYear" />
 </androidx.constraintlayout.widget.ConstraintLayout>

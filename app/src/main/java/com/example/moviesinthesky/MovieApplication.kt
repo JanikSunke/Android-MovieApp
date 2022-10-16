@@ -2,6 +2,7 @@ package com.example.moviesinthesky
 
 import android.app.Application
 import android.content.Context
+import com.example.moviesinthesky.data.ActorRepository
 import com.example.moviesinthesky.data.AppDatabase
 import com.example.moviesinthesky.data.MovieRepository
 import kotlinx.coroutines.CoroutineScope
@@ -13,4 +14,5 @@ class MovieApplication : Application() {
     // rather than when the application starts
     val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { MovieRepository(database.movieDao()) }
+    val actorRepository by lazy { ActorRepository(database.actorDao()) }
 }

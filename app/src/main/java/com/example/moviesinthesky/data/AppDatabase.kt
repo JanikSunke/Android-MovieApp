@@ -14,9 +14,10 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class, Actor::class, Movie_Actor::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
+    abstract fun actorDao(): ActorDao
 
     private class MovieDatabaseCallback(
         private val scope: CoroutineScope
@@ -28,7 +29,7 @@ abstract class AppDatabase : RoomDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
                     var movieDao = database.movieDao()
-                    movieDao.deleteAll()
+                    var actorDao = database.actorDao()
 
                     movieDao.insert(Movie(1,"Django Unchained",2012,"Quentin Tarantino","djangoUnchained.png"))
                     movieDao.insert(Movie(2,"Shrek",2001,"Andrew Adamson","shrek.png"))
@@ -37,7 +38,43 @@ abstract class AppDatabase : RoomDatabase() {
                     movieDao.insert(Movie(5,"Saving Private Ryan",1998,"Steven Spielberg","ryan.png"))
                     movieDao.insert(Movie(6,"Gladiator",2000,"Ridley Scott","gladiator.png"))
 
+                    actorDao.insert(Actor(1, "Jamie Foxx"))
+                    actorDao.insert(Actor(2, "Leonardo DiCaprio"))
+                    actorDao.insert(Actor(3, "Christoph Waltz"))
+                    actorDao.insert(Actor(4, "Mike Myers"))
+                    actorDao.insert(Actor(6, "Eddie Murhpy"))
+                    actorDao.insert(Actor(7, "Cameron Diaz"))
+                    actorDao.insert(Actor(8, "Uma Thurman"))
+                    actorDao.insert(Actor(9, "Samuel L. Jackson"))
+                    actorDao.insert(Actor(10, "John Travolta"))
+                    actorDao.insert(Actor(11, "Daniel Kaluuya"))
+                    actorDao.insert(Actor(12, "Allison Williams"))
+                    actorDao.insert(Actor(13, "LaKeith Stanfield"))
+                    actorDao.insert(Actor(14, "Tom Hanks"))
+                    actorDao.insert(Actor(15, "Matt Damon"))
+                    actorDao.insert(Actor(16, "Vin Diesel"))
+                    actorDao.insert(Actor(17, "Russel Crowe"))
+                    actorDao.insert(Actor(18, "Joaquin Phoenix"))
+                    actorDao.insert(Actor(19, "Connie Nielsen"))
 
+                    actorDao.addToMovie(1,1,1)
+                    actorDao.addToMovie(1,1,2)
+                    actorDao.addToMovie(1,1,3)
+                    actorDao.addToMovie(1,2,4)
+                    actorDao.addToMovie(1,2,5)
+                    actorDao.addToMovie(1,2,6)
+                    actorDao.addToMovie(1,3,7)
+                    actorDao.addToMovie(1,3,8)
+                    actorDao.addToMovie(1,3,9)
+                    actorDao.addToMovie(1,4,11)
+                    actorDao.addToMovie(1,4,12)
+                    actorDao.addToMovie(1,4,13)
+                    actorDao.addToMovie(1,5,14)
+                    actorDao.addToMovie(1,5,15)
+                    actorDao.addToMovie(1,5,16)
+                    actorDao.addToMovie(1,6,17)
+                    actorDao.addToMovie(1,6,18)
+                    actorDao.addToMovie(1,6,19)
 
                 }
             }
