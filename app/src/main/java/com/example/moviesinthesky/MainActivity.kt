@@ -16,14 +16,12 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import kotlin.math.log
 
-
 class MainActivity : AppCompatActivity() {
     private val movieViewModel: MovieViewModel by viewModels {
         MovieViewModelFactory((application as MovieApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

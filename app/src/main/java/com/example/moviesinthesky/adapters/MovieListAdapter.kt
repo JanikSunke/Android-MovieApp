@@ -47,7 +47,6 @@ class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.MovieViewHolder?>(M
         init {
             itemView.setOnClickListener {
                 listener.onItemClick(adapterPosition, it)
-
             }
         }
 
